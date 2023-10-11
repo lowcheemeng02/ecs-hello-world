@@ -36,3 +36,4 @@
         - ECS Tasks to be deployed on the EC2 instances in each subnet. Amalgated together, they provide an ECS Service
         - The EC2 instances are part of an Auto-Scaling Group. And they sit behind an ALB.
         - The ECS cluster definition consists of the ECS service and ECS capacity provider
+![](./docs/terraform-aws-ecs.jpg)
