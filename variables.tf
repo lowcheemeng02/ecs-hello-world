@@ -1,11 +1,19 @@
-variable "region" {
+variable "proj_name" {
   type = string
 }
 
-variable "proj_name" {
-  type    = string
+variable "vpc_cidr" {
+  type = string
 }
 
-variable "vpc_cidr" {
+# variable "subnet_cidr_blocks" {
+#   type = list(string)
+# }
+
+variable "availability_zones" {
+  type = list(string)
+}
+
+variable "region" {
   type = string
 }
