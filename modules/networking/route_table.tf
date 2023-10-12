@@ -1,6 +1,10 @@
 # Every VPC has a default route table that can be managed but not destroyed.
 resource "aws_default_route_table" "rt_public" {
   default_route_table_id = aws_vpc.main.default_route_table_id
+
+  tags = {
+    Name = "${var.proj_name}-RT-public"
+  }
 }
 
 # resource "aws_route_table" "rt_public" {
