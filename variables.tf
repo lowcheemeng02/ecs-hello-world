@@ -10,6 +10,10 @@ variable "vpc_cidr" {
 #   type = list(string)
 # }
 
+variable "instance_type" {
+  type = string
+}
+
 variable "availability_zones" {
   type = list(string)
 }

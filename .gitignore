@@ -2,4 +2,4 @@
 *tfstate*
 .terraform.lock.hcl
 *.zip
-*.py
+*.pem
