@@ -22,4 +22,5 @@ module "ec2_capacity_provider" {
 
   subnet_ids = module.vpc_network.subnet_ids
 
+  availability_zones = var.availability_zones
 }
