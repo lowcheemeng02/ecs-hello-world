@@ -53,6 +53,10 @@ resource "aws_launch_template" "ecs_launch" {
     }
   }
 
+  depends_on = [
+    local_file.launch_script
+  ]
+
 }
 
 # find the data for AMZ Linux 3 ami
@@ -73,7 +77,7 @@ locals {
 
 resource "local_file" "launch_script" {
   filename = local.launch_script
-  content = <<-EOF
+  content  = <<-EOF
   #!/bin/bash
   echo ECS_CLUSTER=${var.proj_name}-ecs-cluster >> /etc/ecs/ecs.config
   EOF
