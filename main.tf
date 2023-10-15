@@ -1,3 +1,4 @@
+# VPC, subnets, route table, igw
 module "vpc_network" {
   source = "./modules/networking"
 
@@ -9,6 +10,8 @@ module "vpc_network" {
 
 }
 
+# EC2 launch template, IAM permissions for EC2s to do stuff that EC2s in a ECS need to do, 
+# security group, auto-scaling group, application load balancer
 module "ec2_capacity_provider" {
   source = "./modules/ec2_capacity_provider"
 

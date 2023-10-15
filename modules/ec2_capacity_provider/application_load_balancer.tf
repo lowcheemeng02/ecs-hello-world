@@ -27,6 +27,7 @@ resource "aws_lb_listener" "ecs_alb_listener" {
   }
 }
 
+# Your load balancer routes requests to the targets in a target group and performs health checks on the targets.
 resource "aws_lb_target_group" "ecs_tg" {
   name     = "${var.proj_name}-ecs-lb-tg"
   port     = local.port
@@ -35,6 +36,7 @@ resource "aws_lb_target_group" "ecs_tg" {
   target_type = "instance"
 
   health_check {
+    protocol = "HTTP"
     path = "/"
   }
 }
