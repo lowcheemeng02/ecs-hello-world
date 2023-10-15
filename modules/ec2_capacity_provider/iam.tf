@@ -19,12 +19,17 @@ resource "aws_iam_role" "role" {
   assume_role_policy = data.aws_iam_policy_document.ec2_assume_role.json
 }
 
+
+locals {
+  instance_profile_name = "${var.proj_name}-instance-profile-for-ecsInstanceRole"
+}
+
 # an instance profile is required for EC2
 # EC2 instance runs under the EC2 instance profile
 # it then “assumes” the IAM role, which ultimately gives it any real power
 # The only permissions an EC2 instance profile has is the power to assume a role
 resource "aws_iam_instance_profile" "instance_profile" {
-  name = "${var.proj_name}-instance-profile-for-ecsInstanceRole"
+  name = local.instance_profile_name
   role = aws_iam_role.role.name
 }
 

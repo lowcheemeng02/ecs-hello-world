@@ -9,7 +9,7 @@ module "vpc_network" {
 
 }
 
-module "compute_cap" {
+module "ec2_capacity_provider" {
   source = "./modules/ec2_capacity_provider"
 
   proj_name = var.proj_name
@@ -19,5 +19,7 @@ module "compute_cap" {
   instance_type = var.instance_type
 
   vpc_id = module.vpc_network.vpc_id
+
+  subnet_ids = module.vpc_network.subnet_ids
 
 }
