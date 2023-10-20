@@ -27,3 +27,20 @@ module "ec2_resources" {
 
   availability_zones = var.availability_zones
 }
+
+
+module "ecs_cluster" {
+  source = "./modules/ecs_cluster"
+
+  proj_name = var.proj_name
+
+  ecs_tg_arn = module.ec2_resources.ecs_tg_arn
+
+  asg_arn = module.ec2_resources.asg_arn
+
+  subnet_ids = module.vpc_network.subnet_ids
+
+  sec_grp_id = module.ec2_resources.sec_grp_id
+
+  cluster_name = module.ec2_resources.cluster_name
+}

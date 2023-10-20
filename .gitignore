@@ -3,4 +3,3 @@
 .terraform.lock.hcl
 *.zip
 *.pem
-/**/*.sh

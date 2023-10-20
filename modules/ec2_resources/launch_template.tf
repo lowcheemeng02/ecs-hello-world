@@ -7,55 +7,55 @@ resource "aws_launch_template" "ecs_launch" {
 
   instance_type = var.instance_type
 
-  vpc_security_group_ids = [aws_security_group.ecs_secgrp.id]
+  # vpc_security_group_ids = [aws_security_group.ecs_secgrp.id]
 
-  key_name = aws_key_pair.push_public_key.key_name
+  # key_name = aws_key_pair.push_public_key.key_name
 
-  user_data = filebase64("${local.launch_script}")
+  # user_data = filebase64("${local.launch_script}")
 
-  update_default_version = true
+  # update_default_version = true
 
-  ebs_optimized = true
+  # ebs_optimized = true
 
-  # EC2s run under instance profiles 
-  # EC2s need to be given an instance profile so that they can assume the IAM roles (can be multiple) attached to the profile
-  iam_instance_profile {
-    name = local.instance_profile_name
-  }
+  # # EC2s run under instance profiles 
+  # # EC2s need to be given an instance profile so that they can assume the IAM roles (can be multiple) attached to the profile
+  # iam_instance_profile {
+  #   name = local.instance_profile_name
+  # }
 
-  block_device_mappings {
-    device_name = "/dev/sda1"
-    ebs {
-      volume_size           = 10
-      delete_on_termination = true
-      volume_type           = "gp2"
-    }
-  }
+  # block_device_mappings {
+  #   device_name = "/dev/sda1"
+  #   ebs {
+  #     volume_size           = 10
+  #     delete_on_termination = true
+  #     volume_type           = "gp2"
+  #   }
+  # }
 
-  block_device_mappings {
-    device_name = "/dev/sdb"
-    ebs {
-      volume_size           = 20
-      delete_on_termination = true
-      volume_type           = "gp3"
-    }
-  }
+  # block_device_mappings {
+  #   device_name = "/dev/sdb"
+  #   ebs {
+  #     volume_size           = 20
+  #     delete_on_termination = true
+  #     volume_type           = "gp3"
+  #   }
+  # }
 
-  monitoring {
-    enabled = true
-  }
+  # monitoring {
+  #   enabled = true
+  # }
 
-  tag_specifications {
-    resource_type = "instance"
+  # tag_specifications {
+  #   resource_type = "instance"
 
-    tags = {
-      Name = "${var.proj_name}-ec2-launch"
-    }
-  }
+  #   tags = {
+  #     Name = "${var.proj_name}-ec2-launch"
+  #   }
+  # }
 
-  depends_on = [
-    local_file.launch_script
-  ]
+  # depends_on = [
+  #   local_file.launch_script
+  # ]
 
 }
 
@@ -73,15 +73,25 @@ data "aws_ami" "ecs_ec2_ami" {
 
 locals {
   launch_script = "${path.module}/scripts/ecs.sh"
+
+  cluster_name = "${var.proj_name}-ecs-cluster"
 }
 
-resource "local_file" "launch_script" {
-  filename = local.launch_script
-  content  = <<-EOF
-  #!/bin/bash
-  echo ECS_CLUSTER=${var.proj_name}-ecs-cluster >> /etc/ecs/ecs.config
-  EOF
-}
+# resource "local_file" "launch_script" {
+#   filename = local.launch_script
+#   content  = <<-EOF
+#   #!/bin/bash
+#   echo ECS_CLUSTER=${local.cluster_name} >> /etc/ecs/ecs.config
+#   EOF
+# }
+
+
+
+
+
+
+
+
 
 # resource "aws_instance" "foo" {
 #   ami           = data.aws_ami.ecs_ec2_ami.id
