@@ -12,8 +12,8 @@ module "vpc_network" {
 
 # EC2 launch template, IAM permissions for EC2s to do stuff that EC2s in a ECS need to do, 
 # security group, auto-scaling group, application load balancer
-module "ec2_capacity_provider" {
-  source = "./modules/ec2_capacity_provider"
+module "ec2_resources" {
+  source = "./modules/ec2_resources"
 
   proj_name = var.proj_name
 
