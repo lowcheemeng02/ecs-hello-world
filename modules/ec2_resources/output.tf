@@ -13,3 +13,7 @@ output "sec_grp_id" {
 output "cluster_name" {
   value = local.cluster_name
 }
+
+output "ami_selection" {
+  value = data.aws_ami.ecs_ec2_ami.id
+}
