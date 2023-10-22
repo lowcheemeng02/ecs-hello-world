@@ -79,38 +79,3 @@ data "template_file" "launch_script" {
   }
 }
 
-
-
-
-
-
-
-
-# resource "aws_instance" "foo" {
-#   ami           = data.aws_ami.ecs_ec2_ami.id
-#   instance_type = "t2.micro"
-#   vpc_security_group_ids = [aws_security_group.ecs_secgrp.id]
-
-#   subnet_id = element(var.subnet_ids, 1)
-
-#   # root_block_device aka original storage that comes with EC2
-#   root_block_device {
-#     volume_size = 12
-#     volume_type = "gp3"
-#     delete_on_termination = true
-#   }
-
-#   # additional ebs storage
-#   ebs_block_device {
-#     device_name = "sdb"
-#     volume_size = 30
-#     volume_type = "gp2"
-#     delete_on_termination = true
-#   }
-
-#   tags = {
-#     Name = "${var.proj_name}-ec2"
-#   }
-
-#   depends_on = [ aws_security_group.ecs_secgrp ]
-# }

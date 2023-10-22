@@ -21,3 +21,7 @@ variable "sec_grp_id" {
 variable "cluster_name" {
   type = string
 }
+
+variable "container_image" {
+  type = string
+}

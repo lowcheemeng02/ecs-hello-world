@@ -1,7 +1,5 @@
 # How to Deploy an AWS ECS Cluster with Terraform
 
-Adapted from [this article](https://spacelift.io/blog/terraform-ecs)
-
 - There are mainly two ways of deploying a service on ECS clusters – Fargate and EC2 instances. 
     - Fargate: running containers are deployed automatically. Users do not provide compute capacity to ECS.
     - EC2: containers running as Tasks are deployed on user provider compute capacity.

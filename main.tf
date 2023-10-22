@@ -45,6 +45,8 @@ module "ecs_cluster" {
   sec_grp_id = module.ec2_resources.sec_grp_id
 
   cluster_name = local.cluster_name
+
+  container_image = var.container_image
 }
 
 locals {

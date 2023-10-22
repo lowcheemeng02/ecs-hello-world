@@ -21,3 +21,7 @@ variable "availability_zones" {
 variable "region" {
   type = string
 }
+
+variable "container_image" {
+  type = string
+}
