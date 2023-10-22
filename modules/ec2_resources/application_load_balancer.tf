@@ -33,7 +33,7 @@ resource "aws_lb_target_group" "ecs_tg" {
   port        = local.port
   protocol    = local.protocol
   vpc_id      = var.vpc_id
-  target_type = "instance"
+  target_type = "ip" # instance is incompatible with the awsvpc network mode specified in the task definition
 
   health_check {
     protocol = "HTTP"

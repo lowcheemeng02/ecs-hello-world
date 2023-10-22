@@ -5,7 +5,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 # define a aws_ecs_capacity_provider and link it to the ASG
 # if there is another asg, then another aws_ecs_capacity_provider resource can be created to establish a link to it
 resource "aws_ecs_capacity_provider" "ecs_capacity_provider" {
-  name = "${var.proj_name}-capacity provider"
+  name = "${var.proj_name}-capacity-provider"
 
   auto_scaling_group_provider {
     auto_scaling_group_arn = var.asg_arn

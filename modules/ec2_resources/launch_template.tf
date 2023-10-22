@@ -7,28 +7,28 @@ resource "aws_launch_template" "ecs_launch" {
 
   instance_type = var.instance_type
 
-  vpc_security_group_ids = [aws_security_group.ecs_secgrp.id]
+  # vpc_security_group_ids = [aws_security_group.ecs_secgrp.id]
 
-  key_name = aws_key_pair.push_public_key.key_name
+  # key_name = aws_key_pair.push_public_key.key_name
 
-  user_data = filebase64("${local.launch_script}")
+  # user_data = filebase64("${local.launch_script}")
 
   # update_default_version = true
 
-  ebs_optimized = true
+  # ebs_optimized = true
 
-  # EC2s run under instance profiles 
-  # EC2s need to be given an instance profile so that they can assume the IAM roles (can be multiple) attached to the profile
-  iam_instance_profile {
-    name = local.instance_profile_name
-  }
+  # # EC2s run under instance profiles
+  # # EC2s need to be given an instance profile so that they can assume the IAM roles (can be multiple) attached to the profile
+  # iam_instance_profile {
+  #   name = local.instance_profile_name
+  # }
 
   # block_device_mappings {
-  #   device_name = "/dev/sda1"
+  #   device_name = "/dev/xvda" # cannot be "/dev/sda1" for some ami
   #   ebs {
-  #     volume_size           = 10
+  #     volume_size           = 8
   #     delete_on_termination = true
-  #     volume_type           = "gp2"
+  #     volume_type           = "gp3"
   #   }
   # }
 
