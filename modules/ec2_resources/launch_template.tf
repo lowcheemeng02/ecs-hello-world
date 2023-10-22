@@ -11,7 +11,7 @@ resource "aws_launch_template" "ecs_launch" {
 
   key_name = aws_key_pair.push_public_key.key_name
 
-  user_data = filebase64("${local.launch_script}")
+  user_data = "${base64encode(data.template_file.launch_script.rendered)}"
 
   # update_default_version = true
 
@@ -53,26 +53,31 @@ resource "aws_launch_template" "ecs_launch" {
     }
   }
 
-  # depends_on = [
-  #   local_file.launch_script
-  # ]
+  depends_on = [
+    data.template_file.launch_script
+  ]
 
 }
 
 locals {
   launch_script = "${path.module}/scripts/ecs.sh"
-
-  cluster_name = "${var.proj_name}-ecs-cluster"
 }
 
 # resource "local_file" "launch_script" {
 #   filename = local.launch_script
 #   content  = <<-EOF
 #   #!/bin/bash
-#   echo ECS_CLUSTER=${local.cluster_name} >> /etc/ecs/ecs.config
+#   echo ECS_CLUSTER=${var.cluster_name} >> /etc/ecs/ecs.config
 #   EOF
 # }
 
+data "template_file" "launch_script" {
+  template = file("${local.launch_script}")
+
+  vars = {
+    cluster_name = var.cluster_name
+  }
+}
 
 
 

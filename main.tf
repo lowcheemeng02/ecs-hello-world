@@ -26,6 +26,8 @@ module "ec2_resources" {
   subnet_ids = module.vpc_network.subnet_ids
 
   availability_zones = var.availability_zones
+
+  cluster_name = local.cluster_name
 }
 
 
@@ -42,5 +44,9 @@ module "ecs_cluster" {
 
   sec_grp_id = module.ec2_resources.sec_grp_id
 
-  cluster_name = module.ec2_resources.cluster_name
+  cluster_name = local.cluster_name
+}
+
+locals {
+  cluster_name = "${var.proj_name}-cluster"
 }

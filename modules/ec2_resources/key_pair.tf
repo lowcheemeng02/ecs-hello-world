@@ -17,4 +17,20 @@ resource "local_file" "dl_private_key" {
   # root/modules/ec2_capacity_provider
   # therefore store the file in root
   filename = "${path.module}/../../${var.key_pair_name}.pem"
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = <<-EOT
+    icacls.exe ${path.module}/../../*.pem /reset
+    Remove-Item ${path.module}/../../*.pem
+    EOT
+  }
+
+  provisioner "local-exec" {
+    command = <<-EOT
+    icacls.exe ${path.module}/../../*.pem /reset
+    icacls.exe ${path.module}/../../*.pem /grant:r "$($env:username):(r)"
+    icacls.exe ${path.module}/../../*.pem /inheritance:r
+    EOT
+  }
 }
