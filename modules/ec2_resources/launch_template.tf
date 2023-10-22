@@ -17,11 +17,11 @@ resource "aws_launch_template" "ecs_launch" {
 
   # ebs_optimized = true
 
-  # # EC2s run under instance profiles
-  # # EC2s need to be given an instance profile so that they can assume the IAM roles (can be multiple) attached to the profile
-  # iam_instance_profile {
-  #   name = local.instance_profile_name
-  # }
+  # EC2s run under instance profiles
+  # EC2s need to be given an instance profile so that they can assume the IAM roles (can be multiple) attached to the profile
+  iam_instance_profile {
+    name = local.instance_profile_name
+  }
 
   # block_device_mappings {
   #   device_name = "/dev/xvda" # cannot be "/dev/sda1" for some ami
