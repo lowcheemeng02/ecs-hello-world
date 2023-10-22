@@ -7,11 +7,11 @@ resource "aws_launch_template" "ecs_launch" {
 
   instance_type = var.instance_type
 
-  # vpc_security_group_ids = [aws_security_group.ecs_secgrp.id]
+  vpc_security_group_ids = [aws_security_group.ecs_secgrp.id]
 
-  # key_name = aws_key_pair.push_public_key.key_name
+  key_name = aws_key_pair.push_public_key.key_name
 
-  # user_data = filebase64("${local.launch_script}")
+  user_data = filebase64("${local.launch_script}")
 
   # update_default_version = true
 
