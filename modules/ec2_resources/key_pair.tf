@@ -20,17 +20,15 @@ resource "local_file" "dl_private_key" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = <<-EOT
-    icacls.exe ${path.module}/../../*.pem /reset
-    Remove-Item ${path.module}/../../*.pem
-    EOT
+
+    command = "icacls.exe ${self.filename} /reset && Remove-Item ${self.filename}"
   }
 
   provisioner "local-exec" {
-    command = <<-EOT
-    icacls.exe ${path.module}/../../*.pem /reset
-    icacls.exe ${path.module}/../../*.pem /grant:r "$($env:username):(r)"
-    icacls.exe ${path.module}/../../*.pem /inheritance:r
-    EOT
+    when = create
+
+    command = "icacls.exe ${self.filename} /reset && icacls.exe ${self.filename} /grant:r %username%:(r) && icacls.exe ${self.filename} /inheritance:r"
+
+    on_failure = fail
   }
 }

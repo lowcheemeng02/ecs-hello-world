@@ -1,11 +1,11 @@
 resource "aws_autoscaling_group" "ecs_asg" {
-  name               = "${var.proj_name}-asg"
+  name                = "${var.proj_name}-asg"
   vpc_zone_identifier = var.subnet_ids
 
   # availability_zones = var.availability_zones
-  min_size           = 1
-  max_size           = 3
-  desired_capacity   = 2
+  min_size         = 1
+  max_size         = 3
+  desired_capacity = 2
   # health_check_type  = "ELB"
 
   launch_template {

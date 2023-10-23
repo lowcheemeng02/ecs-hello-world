@@ -12,10 +12,10 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
 
   container_definitions = jsonencode([
     {
-      name      = local.container_name                                           # The name of a container
-      image     = var.container_image # repository-url/image:tag
-      cpu       = 256                                                            # The number of cpu units the Amazon ECS container agent reserves for the container. Amazon ECS uses a standard unit of measure for CPU resources called CPU units. 1024 CPU units is the equivalent of 1 vCPU
-      memory    = 512                                                            # The amount (in MiB) of memory to present to the container
+      name      = local.container_name # The name of a container
+      image     = var.container_image  # repository-url/image:tag
+      cpu       = 256                  # The number of cpu units the Amazon ECS container agent reserves for the container. Amazon ECS uses a standard unit of measure for CPU resources called CPU units. 1024 CPU units is the equivalent of 1 vCPU
+      memory    = 512                  # The amount (in MiB) of memory to present to the container
       essential = true
       portMappings = [
         {

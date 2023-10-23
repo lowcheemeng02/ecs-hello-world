@@ -11,7 +11,7 @@ resource "aws_launch_template" "ecs_launch" {
 
   key_name = aws_key_pair.push_public_key.key_name
 
-  user_data = "${base64encode(data.template_file.launch_script.rendered)}"
+  user_data = base64encode(data.template_file.launch_script.rendered)
 
   # update_default_version = true
 

@@ -43,7 +43,7 @@ resource "aws_security_group_rule" "http_egress_rule" {
   from_port = 0
   to_port   = 0
 
-  protocol          = -1 # all protocols
+  protocol          = -1            # all protocols
   cidr_blocks       = ["0.0.0.0/0"] # the ip range that this rule will allow
   security_group_id = aws_security_group.ecs_secgrp.id
 }

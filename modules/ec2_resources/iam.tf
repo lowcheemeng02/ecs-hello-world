@@ -30,7 +30,7 @@ locals {
 # The only permissions an EC2 instance profile has is the power to assume a role
 resource "aws_iam_instance_profile" "instance_profile" {
   name = local.instance_profile_name
-  role = aws_iam_role.role.name
+  role = aws_iam_role.role.name # implicit dependency on aws_iam_role.role
 }
 
 data "aws_iam_policy" "ec2_for_ecs_policy" {
