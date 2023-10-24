@@ -22,6 +22,8 @@ resource "aws_security_group_rule" "http_ingress_rule" {
 }
 
 resource "aws_security_group_rule" "ssh_ingress_rule" {
+  count = var.allow_ec2_direct_access ? 1 : 0
+
   type = "ingress"
 
   # this rule applies to traffic within the port range: "from_port" to "to_port"

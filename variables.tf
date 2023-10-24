@@ -25,3 +25,7 @@ variable "region" {
 variable "container_image" {
   type = string
 }
+
+variable allow_ec2_direct_access {
+  type = bool
+}

@@ -11,3 +11,5 @@ container_image = "255945442255.dkr.ecr.us-west-2.amazonaws.com/flaskapp:latest"
 instance_type = "t2.micro"
 
 availability_zones = ["us-west-2a", "us-west-2b"]
+
+allow_ec2_direct_access = true

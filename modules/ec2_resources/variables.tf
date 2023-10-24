@@ -25,3 +25,7 @@ variable "availability_zones" {
 variable "cluster_name" {
   type = string
 }
+
+variable "allow_ec2_direct_access" {
+  type = bool
+}

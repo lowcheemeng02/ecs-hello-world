@@ -9,7 +9,7 @@ resource "aws_launch_template" "ecs_launch" {
 
   vpc_security_group_ids = [aws_security_group.ecs_secgrp.id]
 
-  key_name = aws_key_pair.push_public_key.key_name
+  key_name = var.allow_ec2_direct_access ? aws_key_pair.push_public_key[0].key_name : ""
 
   user_data = base64encode(data.template_file.launch_script.rendered)
 

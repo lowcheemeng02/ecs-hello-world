@@ -28,26 +28,28 @@ module "ec2_resources" {
   availability_zones = var.availability_zones
 
   cluster_name = local.cluster_name
+
+  allow_ec2_direct_access = var.allow_ec2_direct_access
 }
 
 
-# module "ecs_cluster" {
-#   source = "./modules/ecs_cluster"
+module "ecs_cluster" {
+  source = "./modules/ecs_cluster"
 
-#   proj_name = var.proj_name
+  proj_name = var.proj_name
 
-#   ecs_tg_arn = module.ec2_resources.ecs_tg_arn
+  ecs_tg_arn = module.ec2_resources.ecs_tg_arn
 
-#   asg_arn = module.ec2_resources.asg_arn
+  asg_arn = module.ec2_resources.asg_arn
 
-#   subnet_ids = module.vpc_network.subnet_ids
+  subnet_ids = module.vpc_network.subnet_ids
 
-#   sec_grp_id = module.ec2_resources.sec_grp_id
+  sec_grp_id = module.ec2_resources.sec_grp_id
 
-#   cluster_name = local.cluster_name
+  cluster_name = local.cluster_name
 
-#   container_image = var.container_image
-# }
+  container_image = var.container_image
+}
 
 locals {
   cluster_name = "${var.proj_name}-cluster"
