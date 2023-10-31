@@ -1,0 +1,25 @@
+name: CI for working branch
+
+on: [push]
+  
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+
+  CI:
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v4
+          with:
+            ref: ${{ github.ref }}
+    
+        - uses: hashicorp/setup-terraform@v2
+
+        - name: init
+          run: terraform init
+
+        - name: validate
+          run: terraform validate
